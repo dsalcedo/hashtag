@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',["uses"=>"website@index"]);
+Route::get('ejemplo',["uses"=>"website@ejemplo"]);
+
+Route::group(["prefix"=>"demo"],function(){
+    Route::get('/',function(){
+        return "hola mundo";
+    });
+
+    Route::get('demo',function(){
+        return "hola demo";
+    });
 });
