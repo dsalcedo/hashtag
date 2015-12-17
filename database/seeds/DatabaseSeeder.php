@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
+        $this->call(Alakkad\WorldCountriesCities\CitiesSeeder::class);
+        $this->call(Alakkad\WorldCountriesCities\CountriesSeeder::class);
 
         Model::reguard();
     }
