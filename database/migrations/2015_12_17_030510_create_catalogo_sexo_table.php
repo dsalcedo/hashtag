@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEjemploTable extends Migration
+class CreateCatalogoSexoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateEjemploTable extends Migration
      */
     public function up()
     {
-        Schema::create('ejemplo', function (Blueprint $table) {
+        Schema::create('catalogo_sexo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('clave')->unique();
-            $table->string('titulo');
-            $table->integer('precio');
-            $table->integer('descuento');
+            $table->string('cve');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEjemploTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ejemplo');
+        Schema::drop('catalogo_sexo');
     }
 }
