@@ -12,14 +12,22 @@
 */
 
 Route::get('/',["uses"=>"website@index"]);
-Route::get('ejemplo',["uses"=>"website@ejemplo"]);
 
-Route::group(["prefix"=>"demo"],function(){
-    Route::get('/',function(){
-        return "hola mundo";
-    });
+Route::group(['prefix' => 'provider'], function () {
 
-    Route::get('demo',function(){
-        return "hola demo";
+    Route::group(['prefix' => 'twitter'], function () {
+        Route::get('/', [
+            'as'   => 'provider.twitter.redirectToProvider',
+            'uses' => 'Auth\AuthTwitterController@redirectToProvider'
+        ]);
+        Route::get('callback', [
+            'as'   => 'provider.twitter.callback',
+            'uses' => 'Auth\AuthTwitterController@handleProviderCallback'
+        ]);
+        Route::get('error', [
+            'as'   => 'provider.twitter.error',
+            'uses' => 'Auth\AuthTwitterController@providerError'
+        ]);
+
     });
 });

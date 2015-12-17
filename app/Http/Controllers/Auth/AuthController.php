@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+
+use App\Models\Usuario\Usuarios;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
+use Socialite;
+use Vinkla\Hashids\Facades\Hashids;
 
 class AuthController extends Controller
 {
@@ -42,9 +46,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'twitter_id' => 'required|unique:usuarios',
         ]);
     }
 
@@ -56,10 +58,10 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $hash = Hashids::connection('hashtag')->encode(time());
+        return Usuarios::create([
+            'twitter_id' => $data['twitter_id'],
+            'socket_id'  => $hash,
         ]);
     }
 }

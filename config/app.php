@@ -138,6 +138,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Alakkad\WorldCountriesCities\WorldCountriesCitiesServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
 
 
 
@@ -197,7 +199,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Hashids'   => Vinkla\Hashids\Facades\Hashids::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
